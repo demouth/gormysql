@@ -59,6 +59,11 @@ func Open(source string) (db DB, err error) {
 	return
 }
 
+func OpenWithDriver(driverName, source string) (db DB, err error) {
+	db.db, err = sql.Open(driverName, source)
+	return
+}
+
 func (db *DB) Exec(sql string) *Chain {
 	return db.buildChanin().Exec(sql)
 }
